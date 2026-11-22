@@ -21,10 +21,8 @@ class MainWindow(QWidget):
         self.setWindowTitle("Ice Cream Revenue")
         self.resize(950, 700)
 
-        # ============================ TODO - your part ============================
-        # Define here the two lists that the data of the file will be loaded into
-        # (one for the temperatures and one for the revenues).
-        # ==========================================================================
+        self.temperatures = []
+        self.revenues = []
 
         # ---------- title ----------
         self.title_label = QLabel("Ice Cream Revenue vs. Temperature")
@@ -79,14 +77,15 @@ class MainWindow(QWidget):
         if file_name == '':
             return  # the user pressed Cancel
 
-        # ============================ TODO - your part ============================
-        # file_name holds the full path of the file the user chose.
-        # 1. Empty your two lists (in case a file was already loaded before)
-        # 2. Open the file for reading and go over its lines.
-        #    The first line is the header (Temperature,Revenue) - skip it.
-        # 3. Split every other line by ',' and add the two values (as float)
-        #    to the two lists you defined in __init__.
-        # ==========================================================================
+        self.temperatures = []
+        self.revenues = []
+
+        with open(file_name, 'r') as file:
+            file.readline()  # skip the header line (Temperature,Revenue)
+            for line in file:
+                parts = line.strip().split(',')
+                self.temperatures.append(float(parts[0]))
+                self.revenues.append(float(parts[1]))
 
         self.file_label.setText(os.path.basename(file_name))
         self.draw_graph()
@@ -101,25 +100,20 @@ class MainWindow(QWidget):
         self.canvas.draw()
 
     def draw_graph(self):
-        """Draw the graph. Right now it draws a TEMPORARY graph - replace it with the real one."""
+        """Draw the revenue against the temperature as a scatter, with its straight trend line."""
         self.ax.clear()
 
-        # ============================ TODO - your part ============================
-        # Replace the temporary graph below with the real one:
-        # - a scatter of the data with point size 1 (the 's' argument of self.ax.scatter)
-        # - the revenues on the Y axis and the outside temperature on the X axis
-        # - remove the top and right lines of the frame (self.ax.spines[...])
-        # - a correct title and correct axis titles (set_title, set_xlabel, set_ylabel)
-        #
-        # Trend line - after the scatter:
-        # - use np.polyfit(x, y, 1) to get the slope m and the intercept b
-        #   of the straight line that fits the data best
-        # - then call: self.draw_trend_line(x, m, b)
-        x = [1, 2, 3, 4, 5]
-        y = [2, 3, 5, 4, 6]
-        self.ax.plot(x, y, marker="o")
-        self.ax.set_title("Temporary graph")
-        # ==========================================================================
+        self.ax.scatter(self.temperatures, self.revenues, s=1)
+
+        self.ax.spines['top'].set_visible(False)
+        self.ax.spines['right'].set_visible(False)
+
+        self.ax.set_title('Ice Cream Revenue vs. Outside Temperature')
+        self.ax.set_xlabel('Temperature (°C)')
+        self.ax.set_ylabel('Revenue ($)')
+
+        m, b = np.polyfit(self.temperatures, self.revenues, 1)
+        self.draw_trend_line(self.temperatures, m, b)
 
         self.canvas.draw()
 
