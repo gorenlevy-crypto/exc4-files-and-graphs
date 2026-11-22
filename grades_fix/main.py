@@ -99,17 +99,20 @@ class MainWindow(QWidget):
         if file_name == '':
             return  # the user pressed Cancel
 
-        # ============================ TODO - your part ============================
-        # file_name holds the full path of the file the user chose.
-        # 1. Save file_name in self.selected_file
-        # 2. Empty the three lists (in case a file was already loaded before)
-        # 3. Open the file for reading and go over its lines.
-        #    The first line is the header (ID,Grade) - skip it.
-        # 4. For every other line: split it by ',' and add the ID (keep it as text)
-        #    to self.student_ids and the grade (as int) to self.original_grades
-        # 5. Put the same grades in self.corrected_grades too
-        #    (careful: a copy of the values, not the same list object!)
-        # ==========================================================================
+        self.selected_file = file_name
+
+        self.student_ids = []
+        self.original_grades = []
+        self.corrected_grades = []
+
+        with open(self.selected_file, 'r') as file:
+            file.readline()  # skip the header line (ID,Grade)
+            for line in file:
+                parts = line.strip().split(',')
+                self.student_ids.append(parts[0])
+                self.original_grades.append(int(parts[1]))
+
+        self.corrected_grades = self.original_grades.copy()
 
         self.file_label.setText(os.path.basename(file_name))
         self.update_table()
@@ -132,7 +135,6 @@ class MainWindow(QWidget):
                 item.setTextAlignment(Qt.AlignCenter)
                 self.table.setItem(row, col, item)
 
-            # show a corrected grade that changed in green
             if corrected != original:
                 corrected_item = self.table.item(row, 2)
                 corrected_item.setForeground(QColor("#15803d"))
@@ -141,10 +143,11 @@ class MainWindow(QWidget):
     def add_bonus(self):
         bonus = self.bonus_input.value()
 
-        # ============================ TODO - your part ============================
-        # Go over self.original_grades and self.corrected_grades (with an index).
-        # Each corrected grade = the original grade + bonus, but not more than 100.
-        # ==========================================================================
+        for i in range(len(self.original_grades)):
+            new_grade = self.original_grades[i] + bonus
+            if new_grade > 100:
+                new_grade = 100
+            self.corrected_grades[i] = new_grade
 
         self.update_table()
 
@@ -153,13 +156,13 @@ class MainWindow(QWidget):
             QMessageBox.warning(self, "No file", "Please load a students file first.")
             return
 
-        # ============================ TODO - your part ============================
-        # Overwrite the file self.selected_file with the new data:
-        # - first the same header line as in the original file
-        #   (tip: read it from the file before you open it for writing)
-        # - then one line for every student: the ID and the CORRECTED grade, with ','
-        # The file must stay exactly like the original - only the grades change.
-        # ==========================================================================
+        with open(self.selected_file, 'r') as file:
+            header = file.readline().strip()
+
+        with open(self.selected_file, 'w') as file:
+            file.write(header + '\n')
+            for i in range(len(self.student_ids)):
+                file.write(self.student_ids[i] + ',' + str(self.corrected_grades[i]) + '\n')
 
         self.open_file(self.selected_file)
 
