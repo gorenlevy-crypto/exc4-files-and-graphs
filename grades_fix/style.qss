@@ -1,0 +1,147 @@
+/* ================= Grades Correction - style ================= */
+
+QWidget {
+    background-color: #f4f6fb;
+    color: #1f2937;
+    font-family: "Segoe UI";
+    font-size: 14px;
+}
+
+/* ---------- labels ---------- */
+QLabel#title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #1e3a8a;
+}
+
+QLabel#subtitle,
+QLabel#hint {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+QLabel#fileLabel {
+    background-color: #ffffff;
+    border: 1px solid #d6dbe6;
+    border-radius: 6px;
+    padding: 7px 10px;
+    color: #374151;
+}
+
+/* ---------- buttons ---------- */
+QPushButton {
+    background-color: #ffffff;
+    color: #1e3a8a;
+    border: 1px solid #c7d2fe;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #eef2ff;
+    border-color: #818cf8;
+}
+
+QPushButton:pressed {
+    background-color: #e0e7ff;
+}
+
+QPushButton#primary {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 9px 26px;
+}
+
+QPushButton#primary:hover {
+    background-color: #1d4ed8;
+}
+
+QPushButton#primary:pressed {
+    background-color: #1e40af;
+}
+
+/* ---------- table ---------- */
+QTableWidget {
+    background-color: #ffffff;
+    alternate-background-color: #f8fafc;
+    border: 1px solid #d6dbe6;
+    border-radius: 8px;
+    gridline-color: #eef1f6;
+    selection-background-color: #dbeafe;
+    selection-color: #1f2937;
+}
+
+QHeaderView {
+    background-color: transparent;
+}
+
+QHeaderView::section:horizontal {
+    background-color: #1e3a8a;
+    color: #ffffff;
+    padding: 8px;
+    border: none;
+    font-weight: bold;
+}
+
+QHeaderView::section:vertical {
+    background-color: #eef2ff;
+    color: #6b7280;
+    padding: 0px 6px;
+    border: none;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+QTableCornerButton::section {
+    background-color: #1e3a8a;
+    border: none;
+}
+
+/* ---------- bonus number box ---------- */
+QSpinBox {
+    background-color: #ffffff;
+    border: 1px solid #d6dbe6;
+    border-radius: 6px;
+    padding: 6px 8px;
+    min-width: 80px;
+    font-weight: bold;
+}
+
+QSpinBox:focus {
+    border: 1px solid #2563eb;
+}
+
+/* ---------- scroll bar ---------- */
+QScrollBar:vertical {
+    background: #f4f6fb;
+    width: 10px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background: #c7cede;
+    border-radius: 5px;
+    min-height: 30px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #9aa5bd;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* ---------- About window ---------- */
+QLabel#aboutTitle {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1e3a8a;
+}
+
+QLabel#aboutName {
+    font-size: 16px;
+    font-weight: bold;
+}
