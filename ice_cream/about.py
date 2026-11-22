@@ -1,8 +1,8 @@
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QWidget, QLabel, QVBoxLayout
 
-# TODO: put the address of your GitHub repository here
-GITHUB_URL = "https://github.com/YOUR-USERNAME/YOUR-REPO"
+# the address of the GitHub repository of this exercise
+GITHUB_URL = "https://github.com/gorenlevy-crypto/exc4-files-and-graphs"
 
 
 class About(QWidget):
