@@ -1,0 +1,108 @@
+/* ================= Ice Cream Revenue - style ================= */
+
+QWidget {
+    background-color: #fdf7f2;
+    color: #2d2a32;
+    font-family: "Segoe UI";
+    font-size: 14px;
+}
+
+/* ---------- labels ---------- */
+QLabel#title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #9a3412;
+}
+
+QLabel#subtitle,
+QLabel#hint {
+    color: #7c7480;
+    font-size: 13px;
+}
+
+QLabel#fileLabel {
+    background-color: #ffffff;
+    border: 1px solid #ecdcd0;
+    border-radius: 6px;
+    padding: 7px 10px;
+    color: #4b4550;
+}
+
+/* ---------- buttons ---------- */
+QPushButton {
+    background-color: #ffffff;
+    color: #9a3412;
+    border: 1px solid #f5c9a8;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #fff1e6;
+    border-color: #ea8a4f;
+}
+
+QPushButton:pressed {
+    background-color: #ffe3cc;
+}
+
+QPushButton#primary {
+    background-color: #ea580c;
+    color: #ffffff;
+    border: none;
+    padding: 9px 22px;
+}
+
+QPushButton#primary:hover {
+    background-color: #c2410c;
+}
+
+QPushButton#primary:pressed {
+    background-color: #9a3412;
+}
+
+/* ---------- graph card ---------- */
+QFrame#graphCard {
+    background-color: #ffffff;
+    border: 1px solid #ecdcd0;
+    border-radius: 10px;
+}
+
+QFrame#graphCard QWidget {
+    background-color: #ffffff;
+}
+
+QToolBar {
+    border: none;
+    spacing: 4px;
+}
+
+QToolButton {
+    background-color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+QToolButton:hover {
+    background-color: #fff1e6;
+    border-color: #f5c9a8;
+}
+
+QToolButton:checked {
+    background-color: #ffe3cc;
+    border-color: #ea8a4f;
+}
+
+/* ---------- About window ---------- */
+QLabel#aboutTitle {
+    font-size: 22px;
+    font-weight: bold;
+    color: #9a3412;
+}
+
+QLabel#aboutName {
+    font-size: 16px;
+    font-weight: bold;
+}
